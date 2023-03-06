@@ -139,8 +139,7 @@ namespace SecurityPackageTest
         {
             Monoalphabetic algorithm = new Monoalphabetic();
             string plain = algorithm.AnalyseUsingCharFrequency(largeCipher);
-			plain = plain.ToLower();
-
+            
             int count = Enumerable.Range(0, largePlain.Length)
                  .Count(i => largePlain[i] == plain[i]);
            
