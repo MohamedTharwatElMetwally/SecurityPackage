@@ -25,9 +25,29 @@ namespace SecurityLibrary
 
 
             }
-            k = new string(key);
+            int x = 0;
+            foreach (char c in alpha)
+            {
+                if (key.Contains(c) == false)
+                {
+                    for (int i = x; i < k.Length; i++)
+                    {
+                        if (key[i] == '*')
+                        {
+                            key[i] = c;
+                            x = i + 1;
+                            break;
+                        }
 
-            return k;
+
+                    }
+
+                }
+
+            }
+            k = new string(key);
+            // Console.WriteLine(k);
+            return k.ToLower();
         }
 
         public string Decrypt(string cipherText, string key)
