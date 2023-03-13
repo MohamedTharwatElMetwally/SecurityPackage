@@ -5,12 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecurityLibrary
-{
-    public class PlayFair : ICryptographic_Technique<string, string>
-    {
-        public string Decrypt(string cipherText, string key)
-        {
+namespace SecurityLibrary {
+    public class PlayFair : ICryptographic_Technique<string, string> {
+        public string Decrypt(string cipherText, string key) {
             // throw new NotImplementedException();
 
             char[,] matrix = KeyMatrix(key);
@@ -19,39 +16,29 @@ namespace SecurityLibrary
 
             cipherText = cipherText.ToLower();
 
-            for (int i = 0; i < cipherText.Length; i += 2)
-            {
+            for (int i = 0; i < cipherText.Length; i += 2) {
                 int row1 = -1, row2 = -1, col1 = -1, col2 = -1;
 
-                for (int r = 0; r < 5; r++)
-                {
-                    for (int c = 0; c < 5; c++)
-                    {
-                        if (matrix[r, c] == cipherText[i] || matrix[r, c] == 'i' && cipherText[i] == 'j')
-                        {
+                for (int r = 0; r < 5; r++) {
+                    for (int c = 0; c < 5; c++) {
+                        if (matrix[r, c] == cipherText[i] || matrix[r, c] == 'i' && cipherText[i] == 'j') {
                             row1 = r;
                             col1 = c;
                         }
-                        if (matrix[r, c] == cipherText[i + 1] || matrix[r, c] == 'i' && cipherText[i + 1] == 'j')
-                        {
+                        if (matrix[r, c] == cipherText[i + 1] || matrix[r, c] == 'i' && cipherText[i + 1] == 'j') {
                             row2 = r;
                             col2 = c;
                         }
                     }
                 }
 
-                if (row1 == row2)
-                {
+                if (row1 == row2) {
                     plainText.Append(matrix[row1, (col1 - 1 + 5) % 5]);
                     plainText.Append(matrix[row2, (col2 - 1 + 5) % 5]);
-                }
-                else if (col1 == col2)
-                {
+                } else if (col1 == col2) {
                     plainText.Append(matrix[(row1 - 1 + 5) % 5, col1]);
                     plainText.Append(matrix[(row2 - 1 + 5) % 5, col2]);
-                }
-                else
-                {
+                } else {
                     plainText.Append(matrix[row1, col2]);
                     plainText.Append(matrix[row2, col1]);
                 }
@@ -67,8 +54,7 @@ namespace SecurityLibrary
             return plainText.ToString();
         }
 
-        public string Encrypt(string plain_Text, string key)
-        {
+        public string Encrypt(string plain_Text, string key) {
             // throw new NotImplementedException();
 
             char[,] matrix = KeyMatrix(key);
@@ -85,39 +71,29 @@ namespace SecurityLibrary
             if (plainText.Length % 2 != 0)
                 plainText.Append('x');
 
-            for (int i = 0; i < plainText.Length; i += 2)
-            {
+            for (int i = 0; i < plainText.Length; i += 2) {
                 int row1 = -1, row2 = -1, col1 = -1, col2 = -1;
 
-                for (int r = 0; r < 5; r++)
-                {
-                    for (int c = 0; c < 5; c++)
-                    {
-                        if (matrix[r, c] == plainText[i] || matrix[r, c] == 'i' && plainText[i] == 'j')
-                        {
+                for (int r = 0; r < 5; r++) {
+                    for (int c = 0; c < 5; c++) {
+                        if (matrix[r, c] == plainText[i] || matrix[r, c] == 'i' && plainText[i] == 'j') {
                             row1 = r;
                             col1 = c;
                         }
-                        if (matrix[r, c] == plainText[i + 1] || matrix[r, c] == 'i' && plainText[i + 1] == 'j')
-                        {
+                        if (matrix[r, c] == plainText[i + 1] || matrix[r, c] == 'i' && plainText[i + 1] == 'j') {
                             row2 = r;
                             col2 = c;
                         }
                     }
                 }
 
-                if (row1 == row2)
-                {
+                if (row1 == row2) {
                     cipherText.Append(matrix[row1, (col1 + 1) % 5]);
                     cipherText.Append(matrix[row2, (col2 + 1) % 5]);
-                }
-                else if (col1 == col2)
-                {
+                } else if (col1 == col2) {
                     cipherText.Append(matrix[(row1 + 1) % 5, col1]);
                     cipherText.Append(matrix[(row2 + 1) % 5, col2]);
-                }
-                else
-                {
+                } else {
                     cipherText.Append(matrix[row1, col2]);
                     cipherText.Append(matrix[row2, col1]);
                 }
@@ -126,8 +102,7 @@ namespace SecurityLibrary
             return cipherText.ToString();
         }
 
-        public char[,] KeyMatrix(string key)
-        {
+        public char[,] KeyMatrix(string key) {
             char[,] matrix = new char[5, 5];
 
             List<char> chars = new List<char>();
@@ -137,10 +112,8 @@ namespace SecurityLibrary
             key = key.ToLower();
 
             int row = 0, col = 0;
-            for (int i = 0; i < key.Length; i++)
-            {
-                if (chars.Contains(key[i]))
-                {
+            for (int i = 0; i < key.Length; i++) {
+                if (chars.Contains(key[i])) {
                     if (key[i] == 'i' && chars.Contains('j')) chars.Remove('j');
                     if (key[i] == 'j' && chars.Contains('i')) chars.Remove('i');
                     chars.Remove(key[i]);
@@ -150,16 +123,14 @@ namespace SecurityLibrary
                     else
                         matrix[row, col++] = key[i];
 
-                    if (col == 5)
-                    {
+                    if (col == 5) {
                         row++;
                         col = 0;
                     }
                 }
             }
 
-            while (chars.Count > 0)
-            {
+            while (chars.Count > 0) {
                 if (chars[0] == 'i' && chars.Contains('j')) chars.Remove('j');
                 if (chars[0] == 'j' && chars.Contains('i')) chars.Remove('i');
 
@@ -171,8 +142,7 @@ namespace SecurityLibrary
 
                 chars.RemoveAt(0);
 
-                if (col == 5)
-                {
+                if (col == 5) {
                     row++;
                     col = 0;
                 }

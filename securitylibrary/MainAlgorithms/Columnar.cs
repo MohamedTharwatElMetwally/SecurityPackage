@@ -5,47 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecurityLibrary
-{
-    public class Columnar : ICryptographicTechnique<string, List<int>>
-    {
+namespace SecurityLibrary {
+    public class Columnar : ICryptographicTechnique<string, List<int>> {
         // REFERENCE: https://www.chadgolden.com/blog/finding-all-the-permutations-of-an-array-in-c-sharp
-        static IList<IList<int>> Permute(int[] nums) {
-            var list = new List<IList<int>>();
+        static List<List<int>> Permute(int[] nums) {
+            var list = new List<List<int>>();
             return DoPermute(nums, 0, nums.Length - 1, list);
         }
 
-        static IList<IList<int>> DoPermute(int[] nums, int start, int end, IList<IList<int>> list) {
-            if (start == end) {
-                // We have one of our possible n! solutions,
-                // add it to the list.
+        static List<List<int>> DoPermute(int[] nums, int start, int end, List<List<int>> list) {
+            if (start == end)
                 list.Add(new List<int>(nums));
-            } else {
+            else
                 for (var i = start; i <= end; i++) {
-                    Swap(ref nums[start], ref nums[i]);
+                    int temp = nums[start];
+                    nums[start] = nums[i];
+                    nums[i] = temp;
+
                     DoPermute(nums, start + 1, end, list);
-                    Swap(ref nums[start], ref nums[i]);
+
+                    temp = nums[start];
+                    nums[start] = nums[i];
+                    nums[i] = temp;
                 }
-            }
 
             return list;
         }
 
-        static void Swap(ref int a, ref int b) {
-            var temp = a;
-            a = b;
-            b = temp;
-        }
-        // -------------------------------------------- END ---------------------------------------------
-
-        // NEWLY ADDED (NOT INCLUDED IN BASIC SECURITY PACKAGE)
-        private IList<IList<int>> GetLists(List<int> key) {
-            return Permute(key.ToArray());
-        }
-        // ----------------------- END ------------------------
-
-        public List<int> Analyse(string plainText, string cipherText)
-        {
+        public List<int> Analyse(string plainText, string cipherText) {
             plainText = plainText.ToLower(); cipherText = cipherText.ToLower();
 
             List<int> key = new List<int>();
@@ -53,21 +40,20 @@ namespace SecurityLibrary
             for (int temp = 1; temp <= plainText.Length; temp++) {
                 key.Add(temp);
 
-                IList<IList<int>> lists = GetLists(key);
+                List<List<int>> lists = Permute(key.ToArray());
 
                 foreach (var list in lists) {
                     Columnar columnar = new Columnar();
-                    if (columnar.Encrypt(plainText, (List<int>)list) == cipherText || columnar.Decrypt(cipherText, (List<int>)list) == plainText) {
-                        return (List<int>)list;
+                    if (columnar.Encrypt(plainText, list) == cipherText || columnar.Decrypt(cipherText, list) == plainText) {
+                        return list;
                     }
                 }
             }
-            
+
             throw new Exception();
         }
 
-        public string Decrypt(string cipherText, List<int> key)
-        {
+        public string Decrypt(string cipherText, List<int> key) {
             // Create the table of desired height
             int nRows = (int)Math.Ceiling((double)cipherText.Length / key.Count);
             List<List<char>> table = new List<List<char>>();
@@ -79,8 +65,7 @@ namespace SecurityLibrary
             int ctIndex = 0;
             for (int i = 0; i < table.Count; i++)
                 for (int j = 0; j < nRows; j++, ctIndex++)
-                    try { table[key.IndexOf(i + 1)].Add(cipherText[ctIndex]); }
-                    catch (IndexOutOfRangeException) { table[key.IndexOf(i + 1)].Add('-'); }
+                    try { table[key.IndexOf(i + 1)].Add(cipherText[ctIndex]); } catch (IndexOutOfRangeException) { table[key.IndexOf(i + 1)].Add('-'); }
 
             // Read the table row-wise
             string plain = "";
@@ -92,8 +77,7 @@ namespace SecurityLibrary
             return plain;
         }
 
-        public string Encrypt(string plainText, List<int> key)
-        {
+        public string Encrypt(string plainText, List<int> key) {
             // Create the table of desired height
             int nRows = (int)Math.Ceiling((double)plainText.Length / key.Count);
             List<List<char>> table = new List<List<char>>();
@@ -105,8 +89,7 @@ namespace SecurityLibrary
             int ptIndex = 0;
             for (int i = 0; i < table.Count; i++)
                 for (int j = 0; j < key.Count; j++, ptIndex++)
-                    try { table[i].Add(plainText[ptIndex]); }
-                    catch (IndexOutOfRangeException) { table[i].Add('-'); }
+                    try { table[i].Add(plainText[ptIndex]); } catch (IndexOutOfRangeException) { table[i].Add('-'); }
 
             // Read the table column-wise with-respect-to key indices
             string cipher = "";

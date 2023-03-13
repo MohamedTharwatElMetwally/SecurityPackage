@@ -8,30 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace SecurityLibrary
-{
+namespace SecurityLibrary {
     /// <summary>
     /// The List<int> is row based. Which means that the key is given in row based manner.
     /// </summary>
     /// 
 
-    struct Position2D
-    {
+    struct Position2D {
         public int x;
         public int y;
 
-        public Position2D(int x, int y)
-        {
+        public Position2D(int x, int y) {
             this.x = x;
             this.y = y;
         }
     }
 
-    public class HillCipher : ICryptographicTechnique<List<int>, List<int>>
-    {
+    public class HillCipher : ICryptographicTechnique<List<int>, List<int>> {
 
-        public List<int> Analyse(List<int> plainText, List<int> cipherText)
-        {
+        public List<int> Analyse(List<int> plainText, List<int> cipherText) {
             // throw new NotImplementedException();
 
             List<int> key = new List<int>();
@@ -39,8 +34,7 @@ namespace SecurityLibrary
             for (int i = 0; i < 26; i++)
                 for (int j = 0; j < 26; j++)
                     for (int k = 0; k < 26; k++)
-                        for (int l = 0; l < 26; l++)
-                        {
+                        for (int l = 0; l < 26; l++) {
                             key.Add(i);
                             key.Add(j);
                             key.Add(k);
@@ -54,8 +48,7 @@ namespace SecurityLibrary
         }
 
 
-        public List<int> Decrypt(List<int> cipherText, List<int> key)
-        {
+        public List<int> Decrypt(List<int> cipherText, List<int> key) {
             // throw new NotImplementedException();
 
             int m = (int)Math.Sqrt((double)key.Count());
@@ -67,10 +60,8 @@ namespace SecurityLibrary
             int[,] cipherText_2d = Convert2D(cipherText, m, cipherText.Count / m, 1);
             int[,] plainText = new int[m, cipherText.Count / m];
 
-            for (int plain_col = 0; plain_col < cipherText_2d.GetLength(1); plain_col++)
-            {
-                for (int key_row = 0; key_row < keyInverse.GetLength(0); key_row++)
-                {
+            for (int plain_col = 0; plain_col < cipherText_2d.GetLength(1); plain_col++) {
+                for (int key_row = 0; key_row < keyInverse.GetLength(0); key_row++) {
                     int sum = 0;
                     for (int i = 0; i < keyInverse.GetLength(1); i++)
                         sum += keyInverse[key_row, i] * cipherText_2d[i, plain_col];
@@ -86,8 +77,7 @@ namespace SecurityLibrary
         }
 
 
-        public List<int> Encrypt(List<int> plainText, List<int> key)
-        {
+        public List<int> Encrypt(List<int> plainText, List<int> key) {
             // throw new NotImplementedException();
 
             int m = (int)Math.Sqrt((double)key.Count());
@@ -99,10 +89,8 @@ namespace SecurityLibrary
             int[,] plainText_2d = Convert2D(plainText, m, plainText.Count / m, 1);
             int[,] cipherText = new int[m, plainText.Count / m];
 
-            for (int plain_col = 0; plain_col < plainText_2d.GetLength(1); plain_col++)
-            {
-                for (int key_row = 0; key_row < key_2d.GetLength(0); key_row++)
-                {
+            for (int plain_col = 0; plain_col < plainText_2d.GetLength(1); plain_col++) {
+                for (int key_row = 0; key_row < key_2d.GetLength(0); key_row++) {
                     int sum = 0;
                     for (int i = 0; i < key_2d.GetLength(1); i++)
                         sum += key_2d[key_row, i] * plainText_2d[i, plain_col];
@@ -114,8 +102,7 @@ namespace SecurityLibrary
         }
 
 
-        public List<int> Analyse3By3Key(List<int> plainText, List<int> cipherText)
-        {
+        public List<int> Analyse3By3Key(List<int> plainText, List<int> cipherText) {
             // throw new NotImplementedException();
 
             int m = (int)Math.Sqrt((double)plainText.Count());
@@ -124,10 +111,8 @@ namespace SecurityLibrary
             int[,] cipherText_2d = Convert2D(cipherText, m, m, 1);
             int[,] key = new int[m, m];
 
-            for (int plain_col = 0; plain_col < plainTextInverse.GetLength(1); plain_col++)
-            {
-                for (int key_row = 0; key_row < cipherText_2d.GetLength(0); key_row++)
-                {
+            for (int plain_col = 0; plain_col < plainTextInverse.GetLength(1); plain_col++) {
+                for (int key_row = 0; key_row < cipherText_2d.GetLength(0); key_row++) {
                     int sum = 0;
                     for (int i = 0; i < cipherText_2d.GetLength(1); i++)
                         sum += cipherText_2d[key_row, i] * plainTextInverse[i, plain_col];
@@ -139,8 +124,7 @@ namespace SecurityLibrary
         }
 
 
-        public int[,] InverseMatrix(int[,] key)
-        {
+        public int[,] InverseMatrix(int[,] key) {
 
             int m = key.GetLength(0), det;
 
@@ -148,8 +132,7 @@ namespace SecurityLibrary
             //=========== inverse of 2x2 matrix
             //=================================
 
-            if (m == 2)
-            {
+            if (m == 2) {
                 det = key[0, 0] * key[1, 1] - key[0, 1] * key[1, 0];
 
                 // raise error if the key has no inverse
@@ -194,16 +177,12 @@ namespace SecurityLibrary
                 for (int j = 0; j < m; j++)
                     tmpkey[i, j] = key[i, j];
 
-            for (int i = 0; i < m; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < m; j++) {
                     List<Position2D> det_elements = new List<Position2D>();
-                    for (int row = 0; row < m; row++)
-                    {
+                    for (int row = 0; row < m; row++) {
                         if (row == i) continue;
-                        for (int col = 0; col < m; col++)
-                        {
+                        for (int col = 0; col < m; col++) {
                             if (col == j) continue;
                             det_elements.Add(new Position2D(row, col));
                         }
@@ -225,8 +204,7 @@ namespace SecurityLibrary
             return keyTranspose;
         }
 
-        public bool AreEqual(List<int> list1, List<int> list2)
-        {
+        public bool AreEqual(List<int> list1, List<int> list2) {
             if (list1.Count != list2.Count)
                 return false;
 
@@ -237,8 +215,7 @@ namespace SecurityLibrary
             return true;
         }
 
-        public int GCD(int a, int b)
-        {
+        public int GCD(int a, int b) {
             while (a != 0 && b != 0)
                 if (a > b) a %= b;
                 else b %= a;
@@ -247,32 +224,26 @@ namespace SecurityLibrary
             else return a;
         }
 
-        public int[,] Convert2D(List<int> list, int rows, int cols, int dimension)
-        {
+        public int[,] Convert2D(List<int> list, int rows, int cols, int dimension) {
             int[,] matrix = new int[rows, cols];
 
             int r = 0, c = 0;
             if (dimension == 0)  // fill row by row
             {
-                for (int i = 0; i < list.Count; i++)
-                {
+                for (int i = 0; i < list.Count; i++) {
                     matrix[r, c] = list[i];
                     c++;
-                    if (c == cols)
-                    {
+                    if (c == cols) {
                         r++;
                         c = 0;
                     }
                 }
-            }
-            else   // fill col by col
-            {
-                for (int i = 0; i < list.Count; i++)
-                {
+            } else   // fill col by col
+              {
+                for (int i = 0; i < list.Count; i++) {
                     matrix[r, c] = list[i];
                     r++;
-                    if (r == rows)
-                    {
+                    if (r == rows) {
                         c++;
                         r = 0;
                     }
@@ -282,8 +253,7 @@ namespace SecurityLibrary
             return matrix;
         }
 
-        public List<int> Convert1D(int[,] matrix, int dimension)
-        {
+        public List<int> Convert1D(int[,] matrix, int dimension) {
             List<int> list = new List<int>();
 
             if (dimension == 0) // scan row by row
@@ -291,9 +261,8 @@ namespace SecurityLibrary
                 for (int row = 0; row < matrix.GetLength(0); row++)
                     for (int col = 0; col < matrix.GetLength(1); col++)
                         list.Add(matrix[row, col]);
-            }
-            else // scan col by col
-            {
+            } else // scan col by col
+              {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                     for (int row = 0; row < matrix.GetLength(0); row++)
                         list.Add(matrix[row, col]);
