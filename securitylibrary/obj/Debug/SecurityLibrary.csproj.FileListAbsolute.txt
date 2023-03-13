@@ -18,3 +18,9 @@ C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\Security
 C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.csproj.CoreCompileInputs.cache
 C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.dll
 C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.pdb
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityLibrary\bin\Debug\SecurityLibrary.dll
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityLibrary\bin\Debug\SecurityLibrary.pdb
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.csproj.AssemblyReference.cache
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.csproj.CoreCompileInputs.cache
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.dll
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.pdb

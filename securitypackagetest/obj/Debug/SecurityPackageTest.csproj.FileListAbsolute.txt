@@ -35,3 +35,12 @@ C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityPackageTest\bin\Debug\Secu
 C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityLibrary.dll
 C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityLibrary.pdb
 C:\Users\EslamSaeed\Downloads\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.CopyComplete
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityPackageTest.dll
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityPackageTest.pdb
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityLibrary.dll
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityLibrary.pdb
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.AssemblyReference.cache
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.CoreCompileInputs.cache
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.CopyComplete
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.dll
+C:\Users\mohamed\Downloads\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.pdb
