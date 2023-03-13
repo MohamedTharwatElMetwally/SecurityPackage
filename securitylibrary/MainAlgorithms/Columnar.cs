@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SecurityLibrary {
-    public class Columnar : ICryptographicTechnique<string, List<int>> {
-        // REFERENCE: https://www.chadgolden.com/blog/finding-all-the-permutations-of-an-array-in-c-sharp
+    public class Columnar : ICryptographicTechnique<string, List<int>> {
         static List<List<int>> Permute(int[] nums) {
             var list = new List<List<int>>();
             return DoPermute(nums, 0, nums.Length - 1, list);
