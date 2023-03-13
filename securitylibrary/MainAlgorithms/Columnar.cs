@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SecurityLibrary {
-    public class Columnar : ICryptographicTechnique<string, List<int>> {
-        static List<List<int>> Permute(int[] nums) {
+    public class Columnar : ICryptographicTechnique<string, List<int>> {
+        static List<List<int>> GetPermutation(int[] nums) {
             var list = new List<List<int>>();
-            return DoPermute(nums, 0, nums.Length - 1, list);
+            return Permute(nums, 0, nums.Length - 1, list);
         }
 
-        static List<List<int>> DoPermute(int[] nums, int start, int end, List<List<int>> list) {
+        static List<List<int>> Permute(int[] nums, int start, int end, List<List<int>> list) {
             if (start == end)
                 list.Add(new List<int>(nums));
             else
@@ -21,7 +21,7 @@ namespace SecurityLibrary {
                     nums[start] = nums[i];
                     nums[i] = temp;
 
-                    DoPermute(nums, start + 1, end, list);
+                    Permute(nums, start + 1, end, list);
 
                     temp = nums[start];
                     nums[start] = nums[i];
@@ -39,7 +39,7 @@ namespace SecurityLibrary {
             for (int temp = 1; temp <= plainText.Length; temp++) {
                 key.Add(temp);
 
-                List<List<int>> lists = Permute(key.ToArray());
+                List<List<int>> lists = GetPermutation(key.ToArray());
 
                 foreach (var list in lists) {
                     Columnar columnar = new Columnar();
