@@ -5,18 +5,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecurityLibrary {
-    public class Columnar : ICryptographicTechnique<string, List<int>> {
-        static List<List<int>> GetPermutation(int[] nums) {
+namespace SecurityLibrary
+{
+    public class Columnar : ICryptographicTechnique<string, List<int>>
+    {
+        static List<List<int>> GetPermutation(int[] nums)
+        {
             var list = new List<List<int>>();
             return Permute(nums, 0, nums.Length - 1, list);
         }
 
-        static List<List<int>> Permute(int[] nums, int start, int end, List<List<int>> list) {
+        static List<List<int>> Permute(int[] nums, int start, int end, List<List<int>> list)
+        {
             if (start == end)
                 list.Add(new List<int>(nums));
             else
-                for (var i = start; i <= end; i++) {
+                for (var i = start; i <= end; i++)
+                {
                     int temp = nums[start];
                     nums[start] = nums[i];
                     nums[i] = temp;
@@ -31,19 +36,23 @@ namespace SecurityLibrary {
             return list;
         }
 
-        public List<int> Analyse(string plainText, string cipherText) {
+        public List<int> Analyse(string plainText, string cipherText)
+        {
             plainText = plainText.ToLower(); cipherText = cipherText.ToLower();
 
             List<int> key = new List<int>();
 
-            for (int temp = 1; temp <= plainText.Length; temp++) {
+            for (int temp = 1; temp <= plainText.Length; temp++)
+            {
                 key.Add(temp);
 
                 List<List<int>> lists = GetPermutation(key.ToArray());
 
-                foreach (var list in lists) {
+                foreach (var list in lists)
+                {
                     Columnar columnar = new Columnar();
-                    if (columnar.Encrypt(plainText, list) == cipherText || columnar.Decrypt(cipherText, list) == plainText) {
+                    if (columnar.Encrypt(plainText, list) == cipherText || columnar.Decrypt(cipherText, list) == plainText)
+                    {
                         return list;
                     }
                 }
@@ -52,7 +61,8 @@ namespace SecurityLibrary {
             throw new Exception();
         }
 
-        public string Decrypt(string cipherText, List<int> key) {
+        public string Decrypt(string cipherText, List<int> key)
+        {
             // Create the table of desired height
             int nRows = (int)Math.Ceiling((double)cipherText.Length / key.Count);
             List<List<char>> table = new List<List<char>>();
@@ -76,7 +86,8 @@ namespace SecurityLibrary {
             return plain;
         }
 
-        public string Encrypt(string plainText, List<int> key) {
+        public string Encrypt(string plainText, List<int> key)
+        {
             // Create the table of desired height
             int nRows = (int)Math.Ceiling((double)plainText.Length / key.Count);
             List<List<char>> table = new List<List<char>>();
