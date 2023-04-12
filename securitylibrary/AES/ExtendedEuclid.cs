@@ -16,7 +16,24 @@ namespace SecurityLibrary.AES
         /// <returns>Mul inverse, -1 if no inv</returns>
         public int GetMultiplicativeInverse(int number, int baseN)
         {
-            throw new NotImplementedException();
+            // throw new NotImplementedException();
+            int x = 0, y = 0;
+            int gcd = Extended_Euclid(number, baseN, ref x, ref y);
+            if (gcd != 1) return -1;
+            else return (x % baseN + baseN) % baseN;
+        }
+
+        public int Extended_Euclid(int a, int b, ref int x_prev, ref int y_prev)
+        {
+            if(b== 0)
+            {
+                x_prev = 1;
+                y_prev = 0;
+                return a;
+            }
+            int gcd = Extended_Euclid(b, a % b,ref y_prev,ref x_prev);
+            y_prev -= a / b * x_prev;
+            return gcd;
         }
     }
 }
