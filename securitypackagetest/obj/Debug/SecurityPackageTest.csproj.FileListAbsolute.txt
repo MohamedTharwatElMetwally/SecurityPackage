@@ -53,3 +53,12 @@ C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityPackageTest\obj\Debug\Securi
 C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.CopyComplete
 C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.dll
 C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.pdb
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityPackageTest.dll
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityPackageTest.pdb
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityLibrary.dll
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\bin\Debug\SecurityLibrary.pdb
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.AssemblyReference.cache
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.CoreCompileInputs.cache
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.csproj.CopyComplete
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.dll
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityPackageTest\obj\Debug\SecurityPackageTest.pdb

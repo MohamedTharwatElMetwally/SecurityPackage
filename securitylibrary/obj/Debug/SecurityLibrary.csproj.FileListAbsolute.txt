@@ -30,3 +30,9 @@ C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLi
 C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.csproj.CoreCompileInputs.cache
 C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.dll
 C:\Users\EslamSaeed\Desktop\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.pdb
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityLibrary\bin\Debug\SecurityLibrary.dll
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityLibrary\bin\Debug\SecurityLibrary.pdb
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.csproj.AssemblyReference.cache
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.csproj.CoreCompileInputs.cache
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.dll
+D:\Courses\4th year\2nd term\Computer & Network Security\SecurityPackage\SecurityLibrary\obj\Debug\SecurityLibrary.pdb
