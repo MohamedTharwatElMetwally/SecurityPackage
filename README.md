@@ -9,6 +9,7 @@
      - DES / Triple DES
      - RSA
      - RC4
+     - MD5
      - Diffie-Hellman Key Exchange Algorithm
      - ElGamal Cryptographic System
      - Ceaser Cipher
